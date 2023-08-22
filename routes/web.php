@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
@@ -42,6 +43,10 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::post('/update/{category}', 'update')->name('categories.update')->middleware('can:categories.update');
 		Route::delete('/{category}', 'destroy')->name('categories.destroy')->middleware('can:categories.destroy');
 	});
+
+	Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
 });
 
 Route::get('/{product}', [ProductController::class, 'show'])->name('products.show');
+
+

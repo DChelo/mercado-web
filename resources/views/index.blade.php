@@ -10,7 +10,7 @@
         @endphp
 
         <section class="my-4">
-            <h2 class="text-center">{{ $categoryProducts->first()->category->name }}</h2>
+            <h2 class="text-start ms-4">{{ $categoryProducts->first()->category->name }}</h2>
             <div id="carousel{{ $categoryId }}" class="carousel carousel-dark slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     @foreach ($chunkedProducts as $index => $chunk)
