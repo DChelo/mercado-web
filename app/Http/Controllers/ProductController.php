@@ -16,8 +16,8 @@ class ProductController extends Controller
 	public function home()
 	{
 		$products = Product::with('category', 'file')
-		->where('stock', '>', 0)
-		->get();
+			->where('stock', '>', 0)
+			->get();
 		return view('index', compact('products'));
 	}
 
@@ -26,6 +26,12 @@ class ProductController extends Controller
 		$categories = Category::get();
 		$products = Product::with('category', 'file')->get();
 		return view('products.index', compact('products', 'categories'));
+	}
+
+	public function category(Category $category)
+	{
+		$products = $category->products()->where('stock', '>', 0)->paginate(0);
+		return view('categories.productCategory', compact('products', 'category'));
 	}
 
 	public function store(ProductRequest $request)

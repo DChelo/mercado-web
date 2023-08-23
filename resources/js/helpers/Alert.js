@@ -61,10 +61,30 @@ export const successMessage = async ({ is_delete = false, reload = false }) => {
   if (reload) window.location.reload();
 };
 
+export const emptiedMessage = async ({ is_delete = false, reload = false }) => {
+  await Swal.fire({
+    icon: "success",
+    title: "Felicidades!",
+    text: is_delete
+      ? "Carrito vaciado correctamente."
+      : "Dato almacenado correctamente.",
+  });
+  if (reload) window.location.reload();
+};
+
 export const deleteMessage = async () => {
   const { isConfirmed } = await Swal.fire({
     icon: "warning",
     title: "Esta seguro de eliminar?",
+    showCancelButton: true,
+  });
+  return isConfirmed;
+};
+
+export const emptyMessage = async () => {
+  const { isConfirmed } = await Swal.fire({
+    icon: "warning",
+    title: "¿Esta seguro de vaciar el carrito?",
     showCancelButton: true,
   });
   return isConfirmed;

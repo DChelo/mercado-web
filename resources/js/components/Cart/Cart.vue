@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { emptyMessage, emptiedMessage } from '@/helpers/Alert.js'
 export default {
 	props: {
 		userId: {
@@ -42,24 +43,30 @@ export default {
 			const cartData = JSON.parse(localStorage.getItem(`cart_${this.userId}`)) || {};
 			this.cart = cartData;
 		},
+
 		increaseQuantity(productId) {
 			this.cart[productId].quantity++;
 			this.updateLocalStorage();
 		},
+
 		decreaseQuantity(productId) {
 			if (this.cart[productId].quantity > 1) {
 				this.cart[productId].quantity--;
 				this.updateLocalStorage();
 			}
 		},
+
 		updateLocalStorage() {
 			localStorage.setItem(`cart_${this.userId}`, JSON.stringify(this.cart));
 		},
-		clearCart() {
-			if (confirm('¿Estás seguro de que deseas vaciar el carrito?')) {
+
+		async clearCart() {
+			if (!await emptyMessage()) return
+			try {
 				localStorage.removeItem(`cart_${this.userId}`);
-				this.cart = {};
-				alert('El carrito ha sido vaciado.');
+				await emptiedMessage({ is_delete: true, reload: true })
+			} catch (error) {
+				console.error(error);
 			}
 		}
 	},

@@ -4,7 +4,7 @@
             <div class="row g-0">
                 <div class="col-md-9 text-center">
                     <img src="{{ $product->file->route }}" class="card-img-top"
-                        style="max-height: 400px; object-fit: contain;" alt="Imagen Libro">
+                        style="max-height: 400px; object-fit: contain;" alt="Imagen producto">
                 </div>
                 <div class="card col-md-12" style="width: 16rem;">
                     <div class="card-body">
@@ -28,7 +28,8 @@
     </section>
 </x-app>
 <script>
-    function addToCart(product, userId) {
+    async function addToCart(product, userId) {
+
         if (userId) {
             let cart = JSON.parse(localStorage.getItem(`cart_${userId}`)) || {};
 
@@ -44,7 +45,10 @@
 
             localStorage.setItem(`cart_${userId}`, JSON.stringify(cart));
 
-            alert('Producto agregado al carrito.');
+            const response = await Swal.fire({
+                icon: 'success',
+                title: 'Producto añadido correctamente',
+            })
         } else {
             window.location.href = "{{ route('login') }}";
         }

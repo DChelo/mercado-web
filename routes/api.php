@@ -30,14 +30,6 @@ Route::group(['middleware' => ['auth:sanctum']], function (){
 		Route::delete('/{user}', 'destroy');
 	});
 
-	Route::group(['prefix' => 'authors', 'controller' => AuthorController::class], function (){
-		Route::get('/', 'index');
-		Route::get('/{author}', 'show');
-		Route::post('/', 'store');
-		Route::put('/{author}', 'update');
-		Route::delete('/{author}', 'destroy');
-	});
-
 	Route::group(['prefix' => 'books', 'controller' => BookController::class], function (){
 		Route::get('/', 'index');
 		Route::get('/{book}', 'show');

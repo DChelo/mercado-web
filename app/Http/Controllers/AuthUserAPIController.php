@@ -38,10 +38,10 @@ class AuthUserAPIController extends Controller
 	{
 		switch ($code) {
 			case 401:
-				return ['login' => false, 'message' => 'Password or email not valid'];
+				return ['login' => false, 'message' => 'Contraseña o email invalidos'];
 
 			default:
-				return ['login' => true, 'message' => 'Login successful', 'data' => $data];
+				return ['login' => true, 'message' => 'Login exitoso', 'data' => $data];
 		}
 	}
 }

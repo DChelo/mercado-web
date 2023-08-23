@@ -13,11 +13,15 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto ">
-                <li class="nav-item">
-                    <a class="dropdown-item" href="{{ route('categories.get-all') }}">
-						Categorias
-					</a>
-                </li>
+                <a class="dropdown-item enlarge-on-hover" href="{{ route('categories.getAll') }}">
+                    Categorias
+                </a>
+                <style>
+                    .enlarge-on-hover:hover {
+                        transform: scale(1.1);
+                        transition: transform 0.3s;
+                    }
+                </style>
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -40,7 +44,7 @@
                         </li>
                     @endif
                 @else
-				<a class="btn btn-primary" href="{{ route('cart.show') }}"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a class="btn btn-primary" href="{{ route('cart.show') }}"><i class="fa-solid fa-cart-shopping"></i></a>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

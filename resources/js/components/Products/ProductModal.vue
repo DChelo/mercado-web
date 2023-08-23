@@ -145,12 +145,12 @@ export default {
 	computed: {
 		schema() {
 			return yup.object({
-				name: yup.string().required(),
-				price: yup.number().required().positive(),
-				description: yup.string(),
-				color: yup.string().required(),
-				stock: yup.string().required(),
-				category: yup.string().required(),
+				// name: yup.string().required(),
+				// price: yup.number().required().positive(),
+				// description: yup.string().required(),
+				// color: yup.string().required(),
+				// stock: yup.string().required(),
+				// category: yup.string().required(),
 			});
 		},
 	},
@@ -168,11 +168,11 @@ export default {
 	created() {
 	},
 	methods: {
+
 		previewImage(envent) {
 			this.file = envent.target.files[0]
 			this.image_preview = URL.createObjectURL(this.file)
 		},
-
 
 		async saveProduct() {
 			try {
@@ -201,8 +201,8 @@ export default {
 			this.category = null
 			this.$parent.product = {}
 			this.back_errors = {}
-			this.file = null,
-				this.image_preview = '/storage/images/products/predeter.png'
+			this.file = null
+			this.image_preview = '/storage/images/products/predeter.png'
 			document.getElementById('file').value = ''
 			setTimeout(() => this.$refs.form.resetForm(), 100)
 		}

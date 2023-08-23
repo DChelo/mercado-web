@@ -60,7 +60,7 @@ export default {
 	computed: {
 		schema() {
 			return yup.object({
-				name: yup.string().required(),
+				// name: yup.string().required(),
 			});
 		},
 	},

@@ -23,15 +23,16 @@ class CategoryController extends Controller
 		return response()->json([], 201);
     }
 
-	public function getAll(){
-		$categories = Category::get();
-		return view('categories.homeCategory', compact('categories'));
-	}
-
     public function show(Request $request, Category $category)
     {
 		return response()->json(['category' => $category], 200);
     }
+
+	public function getAll() {
+		$categories = Category::has('products', '>', 0)->get();
+		return view('categories.getAll', compact('categories'));
+	}
+
 
     public function update(CategoryRequest $request, Category $category)
     {

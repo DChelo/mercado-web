@@ -2,32 +2,33 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\User\UserRequest;
 use App\Providers\RouteServiceProvider;
-use App\Models\User;
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
-    use RegistersUsers;
+	use RegistersUsers;
 
-    protected $redirectTo = RouteServiceProvider::HOME;
+	protected $redirectTo = RouteServiceProvider::HOME;
 
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
+	public function __construct()
+	{
+		$this->middleware('guest');
+	}
 
-    protected function register(UserRequest $request)
-    {
+	public function register(UserRequest $request)
+	{
 		$user = new User($request->all());
 		$user->save();
 		$user->assignRole('user');
 		Auth::login($user);
 		return redirect($this->redirectPath());
-    }
+	}
 }
